@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="addon.kodi-gtuber" name="Gtuber for Kodi" version="0.0.1" provider-name="Ícar">
+    <requires>
+        <import addon="xbmc.python" version="2.25.0"/>
+    </requires>
+    <extension point="xbmc.addon.video" library="main.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en_GB">An addon that receives a URL and tries to play it</summary>
+        <description lang="en_GB">This addon uses the C library Gtuber to parse an input URL
+            to try to play it.
+        </description>
+        <disclaimer lang="en_GB">This addon is provided as-is, without any warranty.</disclaimer>
+        <language>en</language>
+        <platform>all</platform>
+        <license>GPL-2.0-or-later</license>
+        <email>kodi@icarns.xyz</email>
+        <source>https://github.com/juxuanu/kodi-gtuber</source>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>icon.png</fanart>
+        </assets>
+    </extension>
+</addon>

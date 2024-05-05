@@ -1,0 +1,3 @@
+[submodule "gtuber"]
+	path = gtuber
+	url = https://github.com/Rafostar/gtuber.git

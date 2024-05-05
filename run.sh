@@ -9,4 +9,4 @@ else
   INPUT="${*[0]}"
 fi
 
-python3 ./gtuber.py "$INPUT"
+python3 ./main.py "$INPUT"

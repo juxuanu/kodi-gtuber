@@ -1,20 +1,45 @@
+import os
 import sys
+
+cwd = os.getcwd()
+os.environ['LD_LIBRARY_PATH'] = f'{cwd}/gtuber/installation/usr/local/lib64'
+os.environ['GI_TYPELIB_PATH'] = f'{cwd}/gtuber/installation/usr/local/lib64/girepository-1.0'
+
+print(
+    os.environ['LD_LIBRARY_PATH'],
+    os.environ['GI_TYPELIB_PATH']
+)
+
 import gi
 
-gi.require_version("Gtk", "4.0")
-from gi.repository import GLib, Gtk
+gi.require_version('Gtuber', '0.0')
+from gi.repository import GLib, Gtuber
 
+if len(sys.argv) < 2:
+    print("No URI provided as argument!")
+    sys.exit(1)
 
-class MyApplication(Gtk.Application):
-    def __init__(self):
-        super().__init__(application_id="com.example.MyGtkApplication")
-        GLib.set_application_name("Cuqui Moni App")
+client = Gtuber.Client()
+info = None
 
-    def do_activate(self):
-        window = Gtk.ApplicationWindow(application=self, title="Cuqui moni")
-        window.present()
+try:
+    info = client.fetch_media_info(sys.argv[1], None)
+except GLib.Error as err:
+    print(err.message)
 
+if info:
+    print("TITLE: {}".format(info.props.title))
+    print("DURATION: {}".format(info.props.duration))
 
-app = MyApplication()
-exit_status = app.run(sys.argv)
-sys.exit(exit_status)
+    streams = info.get_streams()
+    adaptive_streams = info.get_adaptive_streams()
+
+    print("STREAMS: {}".format(len(streams)))
+    print("ADAPTIVE STREAMS: {}\n".format(len(adaptive_streams)))
+
+    for arr in streams, adaptive_streams:
+        for stream in arr:
+            print("VIDEO CODEC: {}".format(stream.props.video_codec))
+            print("AUDIO CODEC: {}".format(stream.props.audio_codec))
+            print("RESOLUTION: {}x{}@{}".format(stream.props.width, stream.props.height, stream.props.fps))
+            print("URI: {}\n".format(stream.props.uri))

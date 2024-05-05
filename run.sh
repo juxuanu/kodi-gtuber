@@ -2,6 +2,7 @@
 
 export LD_LIBRARY_PATH="./gtuber/installation/usr/local/lib64:$LD_LIBRARY_PATH"
 export GI_TYPELIB_PATH="./gtuber/installation/usr/local/lib64/girepository-1.0"
+export GTUBER_PLUGIN_PATH="./gtuber/installation/usr/local/lib64/gtuber-0.0"
 
 if [ "$*" -eq 0 ]; then
   INPUT=$(zenity --entry --text="URI to run Gtuber against" --entry-text="")

@@ -1,16 +1,5 @@
 import os
 import sys
-
-# TODO: doesn't work here for some reason
-cwd = os.getcwd()
-os.environ['LD_LIBRARY_PATH'] = f'{cwd}/gtuber/installation/usr/local/lib64'
-os.environ['GI_TYPELIB_PATH'] = f'{cwd}/gtuber/installation/usr/local/lib64/girepository-1.0'
-
-print(
-    os.environ['LD_LIBRARY_PATH'],
-    os.environ['GI_TYPELIB_PATH']
-)
-
 import gi
 
 gi.require_version('Gtuber', '0.0')

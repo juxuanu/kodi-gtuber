@@ -1,6 +1,7 @@
 import os
 import sys
 
+# TODO: doesn't work here for some reason
 cwd = os.getcwd()
 os.environ['LD_LIBRARY_PATH'] = f'{cwd}/gtuber/installation/usr/local/lib64'
 os.environ['GI_TYPELIB_PATH'] = f'{cwd}/gtuber/installation/usr/local/lib64/girepository-1.0'
